@@ -1,6 +1,6 @@
 #Plate Stacking Project
 #Create an empty list to hold plates for adding, removing or print
-#Create a master function to print the below functions and start the program
+#AT THE END : Create a master function to CALL ALL the below functions and start the program
     #Print menu options
     # Deploy Exit in the stacking project function
         # User is able to exit 
@@ -46,7 +46,7 @@ def user_error(prompt):
 # Function to add plates
 def add_plate():
     global plates
-    add_plates = int(input("Enter the size of the plate: "))
+    add_plates = int(input('Enter the size of the plate:'))
     if add_plates <=0:
         print ('Error, plate choice is not valid, please try again.')
     elif not plates:
@@ -57,7 +57,18 @@ def add_plate():
     else:
         plates.append(add_plates)
         print ('Success! Plate added')
-    
+
+#Function to remove plates
+def remove_plate():
+    global plates
+    remove_plates = int(input('Enter the plates you want to remove:'))
+    if remove_plates <= 0:
+        print ('Error, please enter a valid number')
+    elif remove_plates > len(plates):
+        print ( f'Error, cannot remove more than {plates.index()} plates. You entered {remove_plates}')
+    else :
+        plates.pop()
+        print('Success! Plate(s) removed.')
 
 #Function to print plates
 def print_plates():
@@ -83,7 +94,7 @@ def plate_stacker() :
         elif option == '1': 
             add_plate()
         elif option == '2':
-            print ('Remove a Plate')
+            remove_plate()
         elif option == '3':
             print_plates()
         # else :

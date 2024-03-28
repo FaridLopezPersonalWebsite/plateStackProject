@@ -26,6 +26,7 @@
 #Create function Print Plates
     #Stack plates vertically, largest to smallest
         #Order from largest at the bottom to smallest at the top
+        #Print plates in center 
     #If no plates:
         #print message: No Plates Stacked!
 
@@ -54,7 +55,7 @@ def add_plate():
         plates.append(add_plates)
         print ('Success! Plate added')
     elif add_plates>plates[-1]:
-        print('Error, the plate must be smaller than the plates below it, try again!')
+        print(f'Error, cannot place a {add_plates} on top of a {plates[-1]} sized plate')
     else:
         plates.append(add_plates)
         print ('Success! Plate added')

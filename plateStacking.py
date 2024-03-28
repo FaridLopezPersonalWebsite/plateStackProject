@@ -1,17 +1,34 @@
 #Plate Stacking Project
-#Add a Plate 
-    #Every new plate that is added must be <= the previous plate size, 
-        # ie 9 cant be added on top of an 8 plate but 7 can.
-        # Give error when user tries doing something like the above
-    # While the plates are added, the list of plates is printed 
-# Remove a plate 
-    # User is able to remove a number of plates available
-        # You can't remove 3 plates if only 2 are available
-        # Error is given if the above is tried
-        # If there are zero plates left then print zero plates left
-# Exit 
-    # User is able to exit 
-    # Print Goodbye! Message when selected
+#Create an empty list to hold plates for adding, removing or print
+#Create a master function to print the below functions and start the program
+    #Print menu options
+    # Deploy Exit in the stacking project function
+        # User is able to exit 
+        # Print Goodbye! Message when selected and program is over
+#Create function Add a Plate 
+    # Check for positive integer input
+        #If zero is inputted print warning and dont append plate list:
+        # If new plate inputted is larger than the plate below it:
+            #Print warning and dont add plate
+        # Else if plate is equal to or smaller than plate below it:
+            #Append list and add plate 
+# Create function Remove a plate 
+    # User is able to remove a number of plates from top of stack
+        # Positive integers only
+            #Else if not positive print warning and don't remove plates
+        # Number can't be less than or equal to zero
+            #If zero is given :
+                #print a warning
+        #If there are too many plates selected:
+            #Print a warning
+        # If there are zero plates left :
+            # print zero plates left
+#Create function Print Plates
+    #Stack plates vertically, largest to smallest
+        #Order from largest at the bottom to smallest at the top
+    #If no plates:
+        #print message: No Plates Stacked!
+
 
 #Create a List
 
@@ -27,11 +44,27 @@ def user_error(prompt):
         return value
 
 # Function to add plates
-def add_plate ():
-    add_plates = input('What size plate do you want to add ? [0-10]: ')
-    plates.append(f'{add_plates} is the number of plates now')
-    print('Add a Plate')
-    print(add_plates)
+def add_plate():
+    global plates
+    add_plates = int(input("Enter the size of the plate: "))
+    if add_plates <=0:
+        print ('Error, plate choice is not valid, please try again.')
+    elif not plates:
+        plates.append(add_plates)
+        print ('Success! Plate added')
+    elif add_plates>plates[-1]:
+        print('Error, the plate must be smaller than the plates below it, try again!')
+    else:
+        plates.append(add_plates)
+        print ('Success! Plate added')
+    
+
+#Function to print plates
+def print_plates():
+    for plate in reversed(plates):
+        print('#'*plate)
+    if plates == []:
+        print('There are currently no plates, please add a plate.')
 
 # Function to run the program 
 def plate_stacker() :
@@ -52,8 +85,9 @@ def plate_stacker() :
         elif option == '2':
             print ('Remove a Plate')
         elif option == '3':
-            print (*plates, sep = "\n")
+            print_plates()
         # else :
         #     print('I dont understand that command')
 
+#Call function
 plate_stacker()

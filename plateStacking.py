@@ -34,6 +34,7 @@
 
 plates = []
 
+
 # Function to account for other user errors
 def user_error(prompt): 
     value = ''
@@ -65,17 +66,21 @@ def remove_plate():
     if remove_plates <= 0:
         print ('Error, please enter a valid number')
     elif remove_plates > len(plates):
-        print ( f'Error, cannot remove more than {plates.index()} plates. You entered {remove_plates}')
+        print ( f'Error, cannot remove more than {len(plates)} plates. You entered {remove_plates}')
     else :
-        plates.pop()
+        for _ in range(remove_plates):
+            plates.pop()
         print('Success! Plate(s) removed.')
 
 #Function to print plates
 def print_plates():
-    for plate in reversed(plates):
-        print('#'*plate)
-    if plates == []:
-        print('There are currently no plates, please add a plate.')
+    max_plate_width = max(plates) if plates else 0
+    if not plates:
+        print('There are currently no plates. Please add a plate.')
+    else:
+        for plate in reversed(plates):
+            spacing = (max_plate_width - plate) // 2
+            print(' ' * spacing + '#' * plate)
 
 # Function to run the program 
 def plate_stacker() :
